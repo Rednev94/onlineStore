@@ -1,0 +1,9 @@
+.main_page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    // background-image: url(https://sun9-84.userapi.com/impg/JWVptz9xWp4-n6WKjHhVu6ZLnvTZHJ9ELKV_Mw/BcFJ3WoHNUo.jpg?size=2560x1920&quality=95&sign=d6d34afda9192ee6f18e1725c793437d&type=album);
+}
+.cont {
+    height: calc(100vh - 240px);
+}
