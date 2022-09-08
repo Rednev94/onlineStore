@@ -11,7 +11,7 @@ const Header = () => {
                 <div className={style.header_components1}>
                     <Link to="/">Главная</Link>
                     <Link to="/category">Каталог</Link>
-                    <Link to="/">О нас</Link>
+                    <Link to="/info">О нас</Link>
                 </div>
                 <img
                     src="https://cdn.shopify.com/s/files/1/2786/9162/files/LKG-outline_5ba974c0-3eae-498d-b336-91cb38c01628_100x.png?v=1539268058"
@@ -27,7 +27,7 @@ const Header = () => {
                         </ul>
                     </p>
                     <div className={style.card}>
-                        <span>Корзина</span>{" "}
+                        <Link to="/cart">Корзина</Link>
                         <img
                             src="https://cdn-icons-png.flaticon.com/512/2696/2696198.png"
                             alt=""
