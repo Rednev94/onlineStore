@@ -7,6 +7,7 @@ const OrderPage = () => {
     const refInputName = React.useRef();
     const refInputPhone = React.useRef();
     const refInputEmail = React.useRef();
+    const refInputComment = React.useRef();
     const navigate = useNavigate();
 
     const validatePhone = (phone) => {
@@ -24,6 +25,7 @@ const OrderPage = () => {
             refInputName.current.value = "";
             refInputPhone.current.value = "";
             refInputEmail.current.value = "";
+            refInputComment.current.value = "";
             alert("Заказ отправлен");
         } else {
             alert("Введите корректные значения!");
@@ -50,7 +52,11 @@ const OrderPage = () => {
                         type="email"
                         placeholder="Введите Email..."
                     />
-                    <input type="text" placeholder="Комментарий к заказу..." />
+                    <input
+                        ref={refInputComment}
+                        type="text"
+                        placeholder="Комментарий к заказу..."
+                    />
                 </div>
                 <div className={style.orderButtons}>
                     <Button

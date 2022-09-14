@@ -55,6 +55,9 @@ export const itemSlice = createSlice({
         addCategory: (state, action) => {
             state.category = action.payload;
         },
+        clearCategory: (state, action) => {
+            state.category = [];
+        },
     },
     extraReducers: {
         [fetchItems.pending]: (state) => {
@@ -78,6 +81,7 @@ export const itemSlice = createSlice({
     },
 });
 
-export const { addItems, addCategory } = itemSlice.actions;
+export const { addItems, addCategory, clearItems, clearCategory } =
+    itemSlice.actions;
 
 export default itemSlice.reducer;

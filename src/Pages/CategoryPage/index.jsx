@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CategoryCard from "../../Components/categoryCard";
-import { fetchCategory } from "../../store/itemSlice";
+import { fetchCategory, clearCategory } from "../../store/itemSlice";
 import style from "./categoryPage.module.scss";
 import Loader from "../../shared/loader";
 
@@ -13,6 +13,10 @@ const CategoryPage = () => {
 
     React.useEffect(() => {
         dispatch(fetchCategory());
+
+        return () => {
+            dispatch(clearCategory());
+        };
     }, []);
 
     const categoryCards = category.map((obj) => (
