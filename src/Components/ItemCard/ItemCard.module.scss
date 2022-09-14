@@ -1,0 +1,46 @@
+.itemCard {
+    width: 300px;
+    height: 480px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .clickContainer {
+        cursor: pointer;
+    }
+}
+
+p {
+    margin: 10px 0px 0px 0px;
+    text-align: center;
+    text-justify: center;
+}
+.itemImg1 {
+    height: 400px;
+    width: 300px;
+}
+.itemImg2 {
+    height: 400px;
+    width: 300px;
+}
+
+.itemImg {
+    position: relative;
+    .itemImg2 {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+    }
+}
+
+.itemImg:hover {
+    .itemImg1 {
+        opacity: 0;
+        transition: 500ms;
+    }
+    .itemImg2 {
+        opacity: 1;
+        transition: 500ms;
+    }
+}

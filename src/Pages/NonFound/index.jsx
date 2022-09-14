@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Footer from "../../shared/Footer/Footer";
-import Header from "../../shared/Header/Header";
-import style from "./NonFound.module.scss";
+import style from "./nonFound.module.scss";
 
 const NonFound = () => {
     return (
         <>
-            <Header />
             <div className={style.nonFound}>
                 <img
                     className={style.img}
@@ -24,7 +21,6 @@ const NonFound = () => {
                     </p>
                 </div>
             </div>
-            <Footer />
         </>
     );
 };

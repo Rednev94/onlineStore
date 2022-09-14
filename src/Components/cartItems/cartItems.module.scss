@@ -1,0 +1,32 @@
+.cartContent {
+    height: 250px;
+    display: flex;
+    align-items: center;
+    padding: 20px 0px;
+    .item {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        .itemImage {
+            width: 200px;
+            height: 250px;
+        }
+    }
+    .itemCount {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .removeItem {
+            border-bottom: 1px solid grey;
+            cursor: pointer;
+        }
+    }
+    .itemPrice {
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+}

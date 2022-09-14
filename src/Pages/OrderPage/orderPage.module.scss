@@ -1,0 +1,46 @@
+.orderPage {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .orderContent {
+        box-sizing: border-box;
+        width: 640px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid grey;
+        padding: 40px;
+        gap: 40px;
+        .orderInput {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            input {
+                height: 40px;
+                width: 100%;
+                font-size: 25px;
+                border-radius: 10px;
+                border: 2px solid rgb(130, 130, 130, 0.8);
+            }
+
+            input:hover {
+                border: 2px solid rgb(60, 60, 60, 0.8);
+            }
+
+            input:focus {
+                background-color: rgb(130, 130, 130, 0.1);
+            }
+        }
+    }
+}
+.orderButtons {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

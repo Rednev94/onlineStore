@@ -5,10 +5,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
+.main{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
-a {text-decoration: none}
+textarea:focus, input:focus{
+  outline: none;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+a, a:hover, a:active {text-decoration: none; color: black;}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

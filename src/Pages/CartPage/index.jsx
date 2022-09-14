@@ -1,14 +1,25 @@
 import React from "react";
-import Button from "../../shared/button/Button";
-import Counter from "../../shared/Counter";
-import Footer from "../../shared/Footer/Footer";
-import Header from "../../shared/Header/Header";
-import style from "./CartPage.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import EmptyCard from "../../Components/EmptyCart";
+import Button from "../../shared/Button";
+import CartItems from "../../Components/cartItems";
+import Price from "../../shared/price";
+import style from "./cartPage.module.scss";
 
 const CartPage = () => {
+    let { items, totalPrice } = useSelector((state) => state.cartSlice);
+
+    const navigate = useNavigate();
+
+    if (!items.length) {
+        return <EmptyCard />;
+    }
+
+    const cartItems = items.map((item) => <CartItems items={item} />);
+
     return (
         <>
-            <Header />
             <div className={style.cart}>
                 <h1>Корзина:</h1>
                 <div className={style.container1}>
@@ -17,25 +28,17 @@ const CartPage = () => {
                     <div className={style.itemPrice}>Цена:</div>
                 </div>
 
-                <div className={style.container2}>
-                    <div className={style.item}>
-                        <div>Какой то img</div>
-                    </div>
-                    <div className={style.itemCount}>
-                        <Counter />
-                        <div>Очистить</div>
-                    </div>
-                    <div className={style.itemPrice}>
-                        <div>цена товара</div>
-                    </div>
-                </div>
+                <div className={style.container2}>{cartItems}</div>
                 <div className={style.cartRecap}>
                     <p>Итого: </p>
-                    <p>Цена</p>
+
+                    <Price price={totalPrice} />
                 </div>
-                <Button buttonName={"Продолжить оформление заказа"} />
+                <Button
+                    onClick={() => navigate(`/cart/order`)}
+                    buttonName={"Продолжить оформление заказа"}
+                />
             </div>
-            <Footer />
         </>
     );
 };

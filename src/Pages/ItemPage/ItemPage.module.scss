@@ -3,7 +3,6 @@
     justify-content: center;
     box-sizing: border-box;
     padding: 60px 0px;
-    // width: 800px;
     .slides {
         display: flex;
         flex-direction: column;
@@ -18,11 +17,19 @@
         height: 600px;
     }
     .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 400px;
         margin-left: 30px;
         height: 600px;
+
         .price {
+            padding-bottom: 20px;
             border-bottom: 1px solid grey;
+        }
+        .description {
+            padding: 20px 0px;
         }
     }
 }

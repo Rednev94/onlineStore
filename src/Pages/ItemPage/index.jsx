@@ -1,55 +1,67 @@
 import React from "react";
-import Button from "../../shared/button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import Button from "../../shared/Button";
 import Counter from "../../shared/Counter";
-import Footer from "../../shared/Footer/Footer";
-import Header from "../../shared/Header/Header";
 import style from "./ItemPage.module.scss";
+import { addItems } from "../../store/cartSlice";
+import axios from "axios";
+import Price from "../../shared/price";
 
 const ItemPage = () => {
+    const dispatch = useDispatch();
+    const [focusImg, setFocusIMG] = React.useState(0);
+    const [count, setCount] = React.useState(1);
+
+    const { itemID } = useParams();
+
+    const currentItem = useSelector((state) => state.itemSlice.item).find(
+        (item) => item.id === +itemID
+    );
+
+    const onClickAddToCart = () => {
+        dispatch(addItems({ ...currentItem, count: count }));
+    };
+
     return (
         <>
-            <Header />
             <div className={style.ItemPage}>
                 <div className={style.slides}>
-                    <img
-                        src="https://sun9-53.userapi.com/impg/MjPbxsM4RDx6kkZ0wKKirEGpavBjIiw8rQ_kaQ/VO4rTTt7Nro.jpg?size=1620x2160&quality=95&sign=cc1dbefeeb05e0130324710c0f174fa1&type=album"
-                        alt=""
-                    />
-                    <img
-                        src="https://sun9-54.userapi.com/impg/vbVUvH0e8v1QZKiPVFLvBiLFdXm0megYxm1neQ/VFACAfcIqUg.jpg?size=1620x2160&quality=95&sign=d5a0aa98d5a2c7af944df87d3c6fd2ce&type=album"
-                        alt=""
-                    />
+                    {currentItem.imageUrl.map((img, i) => (
+                        <img
+                            key={img}
+                            onClick={() => setFocusIMG(i)}
+                            src={img}
+                            alt=""
+                        />
+                    ))}
                 </div>
 
                 <img
                     className={style.itemImage}
-                    src="https://sun9-81.userapi.com/impg/JgVpA2RJWpm0wAMdL5Q4wKsmAkaBT_2Pev6-fQ/vxc0ar-rBOw.jpg?size=1620x2160&quality=95&sign=8d2714b4be4c30124f90df7e3637dab6&type=album"
-                    alt=""
+                    src={currentItem.imageUrl[focusImg]}
+                    alt="Leather item"
                 />
 
                 <div className={style.info}>
-                    <h1>Название</h1>
-                    <p className={style.price}>Цена</p>
-                    <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Repudiandae sunt ipsum sapiente quam nisi quas,
-                        facere labore delectus, minima eligendi vitae deleniti,
-                        placeat rerum vero praesentium fugit dolor quae.
-                        Voluptatum?
-                    </p>
-                    <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Repudiandae sunt ipsum sapiente quam nisi quas,
-                        facere labore delectus, minima eligendi vitae deleniti,
-                        placeat rerum vero praesentium fugit dolor quae.
-                        Voluptatum?
-                    </p>
-
-                    <Counter />
-                    <Button buttonName={"Добавить в корзину"} />
+                    <div>
+                        <h1>{currentItem.title}</h1>
+                        <div className={style.price}>
+                            <Price price={currentItem.price} />
+                        </div>
+                        <div className={style.description}>
+                            {currentItem.description}
+                        </div>
+                    </div>
+                    <div>
+                        <Counter count={count} setCount={setCount} />
+                        <Button
+                            buttonName={"Добавить в корзину"}
+                            onClick={onClickAddToCart}
+                        />
+                    </div>
                 </div>
             </div>
-            <Footer />
         </>
     );
 };

@@ -1,5 +1,6 @@
 import React from "react";
-import style from "./Footer.module.scss";
+import style from "./footer.module.scss";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -7,19 +8,18 @@ const Footer = () => {
             <div className={style.container}>
                 <div>
                     <p>Мы в социальных сетях:</p>
-                    <img
-                        src="https://30ahtub-acdt.edusite.ru/images/63824b98b9e60b686ff86b336abf450f.png"
-                        alt=""
-                    />
+                    <a href="https://vk.com/club154888228">
+                        <img
+                            src="https://30ahtub-acdt.edusite.ru/images/63824b98b9e60b686ff86b336abf450f.png"
+                            alt=""
+                        />
+                    </a>
                 </div>
-                <div>
-                    <img src="" alt="Логотип" />
-                    <p>г.Нижний Новгород</p>
-                </div>
+                <Link to="/">LITTLE KING</Link>
                 <div>
                     <p>Контакты:</p>
                     <p>Viber/WhatsApp/Telegram:</p>
-                    <p>+79087412723</p>
+                    <p>+79999999999</p>
                 </div>
             </div>
         </div>

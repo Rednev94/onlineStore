@@ -1,25 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    category: [],
+    item: [],
     value: 0,
 };
 
 export const itemSlice = createSlice({
-    name: "item",
+    name: "items",
     initialState,
     reducers: {
-        increment: (state) => {
-            state.value += 1;
+        addItems: (state, action) => {
+            state.item = action.payload;
         },
-        decrement: (state) => {
-            state.value -= 1;
-        },
-        incrementByAmount: (state, action) => {
-            state.value += action.payload;
+        addCategory: (state, action) => {
+            state.category = action.payload;
         },
     },
 });
 
-export const { increment, decrement, incrementByAmount } = itemSlice.actions;
+export const { addItems, addCategory } = itemSlice.actions;
 
 export default itemSlice.reducer;
