@@ -6,7 +6,7 @@ import style from "./Header.module.scss";
 import { setCurrentCurrency, addExchangeRates } from "../../store/cartSlice";
 
 const Header = () => {
-    const count = useSelector((state) => state.cartSlice.totalCount);
+    const { totalCount } = useSelector((state) => state.cartSlice);
     const navigate = useNavigate();
     const currencies = ["RUB", "USD", "EUR", "CNY"];
     const currentCurrency = useSelector(
@@ -17,13 +17,14 @@ const Header = () => {
         (elem) => elem !== currentCurrency
     );
 
-    // React.useEffect(() => {
-    //     axios
-    //         .get(
-    //             "https://api.currencyapi.com/v3/latest?apikey=83cD88Ujqp74fawDm6j6kVqLKbFj0H36jLH9p3kG"
-    //         )
-    //         .then((response) => dispatch(addExchangeRates(response.data.data))).catch((response) => console.log(response));
-    // }, []);
+    React.useEffect(() => {
+        axios
+            .get(
+                "https://api.currencyapi.com/v3/latest?apikey=83cD88Ujqp74fawDm6j6kVqLKbFj0H36jLH9p3kG"
+            )
+            .then((response) => dispatch(addExchangeRates(response.data.data)))
+            .catch((response) => console.log(response));
+    }, []);
 
     return (
         <div className={style.header}>
@@ -66,8 +67,8 @@ const Header = () => {
                             src="https://cdn-icons-png.flaticon.com/512/2696/2696198.png"
                             alt="cart"
                         />
-                        {count > 0 && (
-                            <div className={style.counter}>{count}</div>
+                        {totalCount > 0 && (
+                            <div className={style.counter}>{totalCount}</div>
                         )}
                     </div>
                 </div>

@@ -12,6 +12,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  color: rgb(20, 20, 20);
+  font-size: large;
 }
 
 textarea:focus, input:focus{
@@ -22,9 +24,8 @@ textarea:focus, input:focus{
   flex-grow: 1;
 }
 
-a, a:hover, a:active {text-decoration: none; color: black;}
+a, a:hover, a:active {text-decoration: none; color: rgb(20, 20, 20);}
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Segoe UI' 'Open Sans', 'Helvetica Neue', sans-serif
 }

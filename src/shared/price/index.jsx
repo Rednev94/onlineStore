@@ -10,7 +10,7 @@ const Price = ({ price }) => {
     if (currentCurrency === "USD") {
         return (
             <div className={style.price}>
-                {Math.round(price / exchangeRates.rub.value)}{" "}
+                {Math.round(price / exchangeRates.RUB.value)}{" "}
                 <img
                     src="https://www.svgrepo.com/show/61083/dollar.svg"
                     alt=""
