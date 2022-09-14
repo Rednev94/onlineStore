@@ -5,7 +5,6 @@ import Button from "../../shared/Button";
 import Counter from "../../shared/Counter";
 import style from "./ItemPage.module.scss";
 import { addItems } from "../../store/cartSlice";
-import axios from "axios";
 import Price from "../../shared/price";
 
 const ItemPage = () => {
@@ -15,7 +14,7 @@ const ItemPage = () => {
 
     const { itemID } = useParams();
 
-    const currentItem = useSelector((state) => state.itemSlice.item).find(
+    const currentItem = useSelector((state) => state.itemSlice.items).find(
         (item) => item.id === +itemID
     );
 

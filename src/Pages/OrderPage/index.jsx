@@ -9,11 +9,16 @@ const OrderPage = () => {
     const refInputEmail = React.useRef();
     const navigate = useNavigate();
 
+    const validatePhone = (phone) => {
+        const regex = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+        if (phone.match(regex)) return true;
+        return false;
+    };
+
     const onClickOrder = () => {
         if (
             refInputName.current.value &&
-            refInputPhone.current.value.length >= 11 &&
-            refInputPhone.current.value.length <= 12 &&
+            validatePhone(refInputPhone.current.value) &&
             refInputEmail.current.value.includes("@")
         ) {
             refInputName.current.value = "";

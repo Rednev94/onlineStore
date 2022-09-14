@@ -1,12 +1,13 @@
-import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import style from "./Header.module.scss";
-import { setCurrentCurrency, addExchangeRates } from "../../store/cartSlice";
+import { setCurrentCurrency, fetchExchangeRates } from "../../store/cartSlice";
 
 const Header = () => {
-    const { totalCount } = useSelector((state) => state.cartSlice);
+    const { totalCount, exchangeRatesStatus } = useSelector(
+        (state) => state.cartSlice
+    );
     const navigate = useNavigate();
     const currencies = ["RUB", "USD", "EUR", "CNY"];
     const currentCurrency = useSelector(
@@ -18,12 +19,7 @@ const Header = () => {
     );
 
     React.useEffect(() => {
-        axios
-            .get(
-                "https://api.currencyapi.com/v3/latest?apikey=83cD88Ujqp74fawDm6j6kVqLKbFj0H36jLH9p3kG"
-            )
-            .then((response) => dispatch(addExchangeRates(response.data.data)))
-            .catch((response) => console.log(response));
+        dispatch(fetchExchangeRates());
     }, []);
 
     return (
@@ -43,18 +39,20 @@ const Header = () => {
                 <div className={style.header_components2}>
                     <div className={style.menu_list}>
                         {currentCurrency}
-                        <ul>
-                            {filterСurrencies.map((value, id) => (
-                                <li
-                                    key={id}
-                                    onClick={() =>
-                                        dispatch(setCurrentCurrency(value))
-                                    }
-                                >
-                                    {value}
-                                </li>
-                            ))}
-                        </ul>
+                        {exchangeRatesStatus !== "Server Error" && (
+                            <ul>
+                                {filterСurrencies.map((value, id) => (
+                                    <li
+                                        key={id}
+                                        onClick={() =>
+                                            dispatch(setCurrentCurrency(value))
+                                        }
+                                    >
+                                        {value}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
 
                     <div

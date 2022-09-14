@@ -1,4 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const fetchExchangeRates = createAsyncThunk(
+    "items/fetchExchangeRates",
+    async (_, { rejectWithValue, dispatch }) => {
+        try {
+            const response = await axios.get(
+                `https://api.currencyapi.com/v3/latest?apikey=83cD88Ujqp74fawDm6j6kVqLKbFj0H36jLH9p3kG`
+            );
+            console.log(response);
+            if (!response.statusText === "OK") {
+                throw new Error("Server Error");
+            }
+
+            dispatch(addExchangeRates(response.data.data));
+        } catch (error) {
+            return rejectWithValue("Server Error");
+        }
+    }
+);
 
 const initialState = {
     items: [],
@@ -6,6 +26,7 @@ const initialState = {
     totalPrice: 0,
     currentCurrency: "RUB",
     exchangeRates: [],
+    exchangeRatesStatus: null,
 };
 
 export const cartSlice = createSlice({
@@ -56,6 +77,17 @@ export const cartSlice = createSlice({
         },
         addExchangeRates: (state, action) => {
             state.exchangeRates = action.payload;
+        },
+    },
+    extraReducers: {
+        [fetchExchangeRates.pending]: (state) => {
+            state.exchangeRatesStatus = "Loading";
+        },
+        [fetchExchangeRates.fulfilled]: (state) => {
+            state.exchangeRatesStatus = "Fulfilled";
+        },
+        [fetchExchangeRates.rejected]: (state, action) => {
+            state.exchangeRatesStatus = action.payload;
         },
     },
 });
